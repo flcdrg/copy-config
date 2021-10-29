@@ -1,5 +1,8 @@
-﻿namespace copy_config;
-public class Class1
-{
+﻿using System;
 
+namespace copy_config
+{
+    public class Class1
+    {
+    }
 }
