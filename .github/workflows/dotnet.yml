@@ -36,3 +36,9 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal -binaryLogger:test-${{ matrix.os }}.binlog
 
+    - name: Upload binlogs
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: binlogs
+        path: '*.binlog'
+      if: ${{ always() }}
