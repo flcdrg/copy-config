@@ -25,17 +25,19 @@
     </None>
   </ItemGroup>
 
-  <Target Name="IncludeLocalSettingsJson" BeforeTargets="BeforeBuild;Restore">
+  <!-- <Target Name="IncludeLocalSettingsJson" BeforeTargets="BeforeBuild;Restore">
+
+  </Target> -->
+
+  <Target Name="CreateLocalSettingsJson" Inputs="local.settings.template.json" Outputs="local.settings.json" Condition="!exists('local.settings.json')" BeforeTargets="BeforeBuild;Restore">
+    <Copy SourceFiles="local.settings.template.json" DestinationFiles="local.settings.json" />
+
     <ItemGroup>
       <None Include="local.settings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       </None>    
     </ItemGroup>
-  </Target>
-
-  <Target Name="CreateLocalSettingsJson" Inputs="local.settings.template.json" Outputs="local.settings.json" Condition="!exists('local.settings.json')" BeforeTargets="IncludeLocalSettingsJson">
-    <Copy SourceFiles="local.settings.template.json" DestinationFiles="local.settings.json" />
   </Target>
   
   
