@@ -27,6 +27,10 @@
 
   <Target Name="CreateLocalSettingsJson" Inputs="local.settings.template.json" Outputs="local.settings.json" Condition="!exists('local.settings.json')" BeforeTargets="BeforeBuild;Restore">
     <Copy SourceFiles="local.settings.template.json" DestinationFiles="local.settings.json" />
+
+    <ItemGroup>
+      <None Include="local.settings.json" />
+    </ItemGroup>
   </Target>
   
 </Project>
